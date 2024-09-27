@@ -1,0 +1,14 @@
+dist
+rsa.pub
+.env.sh
+ami_id.txt
+node_modules
+cdktf.out
+cdktf.log
+*terraform.*.tfstate*
+.gen
+.terraform
+tsconfig.tsbuildinfo
+*.d.ts
+*.js
+!setup.js
