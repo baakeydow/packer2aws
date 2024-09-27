@@ -57,6 +57,7 @@ build {
       "sudo passwd -l root",
       "sudo adduser --disabled-password --gecos 'sudo ssh ${var.username}' ${var.username}",
       "echo '${var.username}:${var.password}' | sudo chpasswd",
+      "sudo usermod -aG sudo ${var.username}",
 
       # SSH Setup
       "sudo sed -i '/^#PermitRootLogin/s/^#//; s/yes/no/' /etc/ssh/sshd_config",
@@ -71,9 +72,11 @@ build {
       "sudo chown -R ${var.username}:${var.username} /home/${var.username}/.ssh",
       "sudo chmod 700 /home/${var.username}/.ssh",
       "sudo chmod 600 /home/${var.username}/.ssh/authorized_keys",
+      "sudo systemctl restart ssh",
 
-      # Restart SSH Service
-      "sudo systemctl restart ssh"
+      # Update and Upgrade system
+      "sudo apt-get update -y && sudo apt-get upgrade -y",
+      "sudo apt-get install neovim btop -y"
     ]
   }
 }
