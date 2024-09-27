@@ -1,0 +1,32 @@
+{
+  "name": "cdktf-aws-local-state",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "types": "src/main.ts",
+  "license": "MPL-2.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "compile": "tsc --pretty",
+    "watch": "tsc -w",
+    "upgrade": "npm i cdktf@latest cdktf-cli@latest",
+    "upgrade:next": "npm i cdktf@next cdktf-cli@next",
+    "get": "cdktf get",
+    "synth": "cdktf synth",
+    "deploy": "cdktf deploy --auto-approve",
+    "destroy": "cdktf destroy --auto-approve"
+  },
+  "engines": {
+    "node": ">=18.0"
+  },
+  "dependencies": {
+    "@cdktf/provider-aws": "^19.33.0",
+    "cdktf": "^0.20.8",
+    "constructs": "^10.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
