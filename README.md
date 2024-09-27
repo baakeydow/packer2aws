@@ -1,6 +1,6 @@
 # packer2aws
 
-Use packer to create a custom Debian based AMI with SSH Support
+Use packer to create a custom Debian based AMI with SSH support
 
 ## Setup
 

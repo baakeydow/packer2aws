@@ -2,7 +2,7 @@ import { TerraformStack } from "cdktf";
 import { SecurityGroup } from "@cdktf/provider-aws/lib/security-group";
 
 export const getSshSecurityGroup = ({ stack, port = 1337 }: { stack: TerraformStack; port?: number; }) => {
-  const securityGroup = new SecurityGroup(stack, "security-group", {
+  return new SecurityGroup(stack, "security-group", {
     name: `dtksi-ssh-${port}`,
     description: `Allow SSH on port ${port}`,
     ingress: [
@@ -22,5 +22,4 @@ export const getSshSecurityGroup = ({ stack, port = 1337 }: { stack: TerraformSt
       },
     ],
   });
-  return securityGroup
 } 

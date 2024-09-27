@@ -16,17 +16,25 @@ class DtksiStack extends TerraformStack {
 
     const ami = getAmi({ stack: this })
 
-    if (!ami.id) {
+    if (!ami?.id) {
       throw new Error(`Failed to retrieve AMI => ${ami.name}`);
     }
 
     const securityGroup = getSshSecurityGroup({ stack: this })
+
+    if (!securityGroup?.id) {
+      throw new Error("Failed to retrieve security group");
+    }
 
     const ec2Instance = new Instance(this, "compute", {
       ami: ami.id,
       instanceType: process.env.EC2_INSTANCE_TYPE || "t2.micro",
       vpcSecurityGroupIds: [securityGroup.id],
     });
+
+    if (!ec2Instance?.publicIp) {
+      throw new Error("Failed to retrieve public IP");
+    }
 
     new TerraformOutput(this, "public_ip", {
       value: ec2Instance.publicIp,
